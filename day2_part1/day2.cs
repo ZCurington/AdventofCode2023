@@ -114,18 +114,16 @@ class Day2
 		public int GameIndex;
 		public int NumShows;
 		public colorCount[] ColorCount;
-		public bool IsValid;
+		public bool IsValid = true;
 
 		public Game(int gameIndex, int numShows, colorCount[] sets)
 		{
 			GameIndex = gameIndex;
 			NumShows = numShows;
 			ColorCount = sets;
-			bool IsValid = true;
-			IsValid = CheckValid();
 		}
 
-		public bool CheckValid()
+		public void CheckValid()
 		{
 			for (int setIndex = 0; setIndex < ColorCount.Length; setIndex++)
 			{
@@ -137,10 +135,9 @@ class Day2
 				&& ColorCount[setIndex].Count > 14);
 				if (redInvalid | greenInvalid | blueInvalid)
 				{
-					return false;
+					IsValid = false;
 				}
 			}
-			return true;
 		}
 	}
 }
